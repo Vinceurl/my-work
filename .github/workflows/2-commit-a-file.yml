@@ -1,15 +1,15 @@
 name: Step 2, Commit a file
 
-# This step listens for the learner to commit a file to branch `my-first-branch`.
+# This step listens for the learner to commit a file to branch `app-start-up`.
 # This workflow updates from step 2 to step 3.
 
-# This action will run every time there's a push to `my-first-branch`.
+# This action will run every time there's a push to `app-start-up`.
 # Reference: https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows
 on:
   workflow_dispatch:
   push:
     branches:
-      - my-first-branch
+      - app-start-up
 
 # Reference: https://docs.github.com/en/actions/security-guides/automatic-token-authentication
 permissions:
