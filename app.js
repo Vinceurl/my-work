@@ -24,7 +24,9 @@ const ruvantRegSchema = newSchema({
 });
 const ruvant = mongoose.model("ruvant", ruvantRegSchema);
 
-app.get("/", (req, res) => {});
+app.get("/", (req, res) => {
+  res.render('/', ({});
+});
 app.post();
 
 app.listen(300, (req, res) => {
