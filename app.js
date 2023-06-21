@@ -11,10 +11,10 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 //set the view port routs to ejs layouts
 app.set("view engine", "ejs");
-
-mongoose.connect("mongoDB:logalhost//ruvantDB", { UseNewUrlParser: true });
+//set up data base connection
+mongoose.connect("mongoDB:logalhost:27017/ruvantDB", { UseNewUrlParser: true });
 const Schema = mongoose.Schema;
-const ruvantRegSchema = newSchema({
+const ruvantRegSchema = new Schema({
   FirstName: string,
   LastName: string,
   DOB: string,
@@ -24,9 +24,7 @@ const ruvantRegSchema = newSchema({
 });
 const ruvant = mongoose.model("ruvant", ruvantRegSchema);
 
-app.get("/", (req, res) => {
-  res.render('/', ({});
-});
+app.get("/", (req, res) => {});
 app.post();
 
 app.listen(300, (req, res) => {
