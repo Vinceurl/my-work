@@ -14,7 +14,7 @@ app.set("view engine", "ejs");
 //set up data base connection
 mongoose.connect("mongoDB:logalhost:27017/ruvantDB", { UseNewUrlParser: true });
 const Schema = mongoose.Schema;
-const ruvantRegSchema = new Schema({
+const registrationSchema = new Schema({
   FirstName: string,
   LastName: string,
   DOB: string,
@@ -22,11 +22,20 @@ const ruvantRegSchema = new Schema({
   Userid: string,
   PassWord: string,
 });
-const ruvant = mongoose.model("ruvant", ruvantRegSchema);
+const ruvant = mongoose.model("ruvant", registrationSchema);
 
-app.get("/", (req, res) => {});
-app.post();
+//build api structure
+app.route('/register')
 
-app.listen(300, (req, res) => {
-  console.log("app listeing on port 3000");
+.get(function (req, res){
+  res.send('create your new account')
+
+})
+
+.post(function (req, res){
+  //wrige conditions for desired outcome here.
+});
+
+app.listen(3000, (req, res) => {
+  console.log("app listeing on port 3000")
 });
