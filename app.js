@@ -16,8 +16,11 @@ app.set("view engine", "ejs");
 //set up data base connection
 mongoose.connect("mongoDB:logalhost:27017/ruvantDB", { UseNewUrlParser: true });
 
+//schemas
 
-const accounts = mongoose.model("newaccount", registrationSchema);
+//models
+
+
 
 //build api structure
 app.route('/register')
