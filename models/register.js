@@ -1,4 +1,5 @@
-/* 
-1 Build models for register schema
-2 import register schema
-3 export register moduel */
+const mongoose = require('mongoose');
+import newAccountSchema from '/schemas/register'
+module.export = register
+
+const register = mongoose.model('registration', newAccountSchema);

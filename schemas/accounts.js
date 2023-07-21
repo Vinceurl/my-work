@@ -8,4 +8,4 @@ const accountSchema = mongoose.Schema({
     Username: String,
     email: String,
     phone: String
-})
+});

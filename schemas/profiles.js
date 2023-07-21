@@ -6,4 +6,4 @@ const profilesSchema = mongoose.Schema({
     Username: String,
     email: String,
     phone: String
-})
+});

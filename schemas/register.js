@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-module.export = registrationSchema
+module.export = newAccountSchema
 
-const registrationSchema = mongoose.Schema({
+const newAccountSchema = mongoose.Schema({
     FirstName: String,
     LastName: String,
     DOB: String,

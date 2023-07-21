@@ -1,8 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const { create } = require("domain");
-const { profile } = require("console");
+import account from '/models/accounts'
+import profiles from '/models/profiles/'
+import register from '/models/register'
 
 //define the express app
 const app = express();
@@ -42,7 +43,24 @@ app.route('/register')
     {emwil: req.body.email},
     {phone: req.body.phone}
   )
-});
+})
+
+.post(function (req,res){
+  const newAccount = new account({
+    Firstname: req.body.FirstName,
+    Lastname : req.body.Lastname,
+    Email    : req.body.Email,
+    DOB      : req.body.DOB,
+    Username : req.body.Username,
+    Password : req.body.Password,
+    confirmPassword : req.body.confirmPassword
+  })
+
+  const accnt = req.body.newAccount
+  newAccount.pusch(accnt),
+  res.render('/views/profile.ejs')
+  
+})
 
 app.listen(3000, (req, res) => {
   console.log("app listeing on port 3000")
