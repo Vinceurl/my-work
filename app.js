@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const { create } = require("domain");
+const { profile } = require("console");
 
 //define the express app
 const app = express();
@@ -13,27 +15,30 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 //set up data base connection
 mongoose.connect("mongoDB:logalhost:27017/ruvantDB", { UseNewUrlParser: true });
-const Schema = mongoose.Schema;
-const registrationSchema = new Schema({
-  FirstName: string,
-  LastName: string,
-  DOB: string,
-  Email: string,
-  Userid: string,
-  PassWord: string,
-});
-const ruvant = mongoose.model("ruvant", registrationSchema);
+
+
+const accounts = mongoose.model("newaccount", registrationSchema);
 
 //build api structure
 app.route('/register')
 
 .get(function (req, res){
-  res.send('create your new account')
+  accounts.findOne({account: req.params.account}, function(err, accountfount){
+    if(!err){
+      res.send(accountfount);
+    }else{
+      res.send(err)
+    }
+  })
 
 })
 
-.post(function (req, res){
-  //wrige conditions for desired outcome here.
+.put(function (req, res){
+  profile.update(
+    {UserName: req.body.UserName},
+    {emwil: req.body.email},
+    {phone: req.body.phone}
+  )
 });
 
 app.listen(3000, (req, res) => {
