@@ -1,9 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-import account from '/models/accounts'
-import profiles from '/models/profiles/'
-import register from '/models/register'
+import users from '/models/users'
+import profiles from '/models/profiles'
+import registrations from '/models/register'
 
 //define the express app
 const app = express();
@@ -17,19 +17,21 @@ app.set("view engine", "ejs");
 //set up data base connection
 mongoose.connect("mongoDB:logalhost:27017/ruvantDB", { UseNewUrlParser: true });
 
-//schemas
-
-//models
 
 
+//model imports
+const userAccounts = users();
+const userProfiles = profiles();
+const newAccnts = registrations();
 
-//build api structure
-app.route('/register')
 
-.get(function (req, res){
-  accounts.findOne({account: req.params.account}, function(err, accountfount){
+//build restful api structure
+app.route('/accounts')
+
+.get("/accounts", function (req, res){
+  accounts.findOne({account: req.params.account}, function(err, accountfound){
     if(!err){
-      res.send(accountfount);
+      res.send(accountfound);
     }else{
       res.send(err)
     }
@@ -37,16 +39,19 @@ app.route('/register')
 
 })
 
-.put(function (req, res){
-  profile.update(
+.put("/accounts",function (req, res){
+    const updateAccount = account.update(
     {UserName: req.body.UserName},
     {emwil: req.body.email},
     {phone: req.body.phone}
   )
+
+  updateAccount.push(userProfiles)
+  res.redirect('profiles')
 })
 
-.post(function (req,res){
-  const newAccount = new account({
+.post("/accounts", function (req,res){
+  const newAccount = new register({
     Firstname: req.body.FirstName,
     Lastname : req.body.Lastname,
     Email    : req.body.Email,
@@ -56,12 +61,17 @@ app.route('/register')
     confirmPassword : req.body.confirmPassword
   })
 
-  const accnt = req.body.newAccount
-  newAccount.pusch(accnt),
-  res.render('/views/profile.ejs')
+  newAccount.push(userAccounts, userProfiles, newAccnts),
+  res.render('/profile')
   
 })
 
+.delete("/accounts", function(req, res){
+  account.findbyEmailandDelete({
+      Email : req.body.Email,
+      Password: req.bosy.Password
+  })
+})
 app.listen(3000, (req, res) => {
   console.log("app listeing on port 3000")
 });
