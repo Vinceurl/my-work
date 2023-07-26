@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //set the view port routs to ejs layouts
 app.set("view engine", "ejs");
 //set up data base connection
-mongoose.connect("mongoDB:logalhost:27017/Dymagondb", { UseNewUrlParser: true });
+mongoose.connect("mongoDB:logalhost:27017/revantdb", { UseNewUrlParser: true });
 
 
 
