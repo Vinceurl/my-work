@@ -13,14 +13,5 @@ const userSchema = new Schema({
         required:true}}
 });
 
-userSchema.pre('save', function(next){
-    const user = this
-
-    bcrupt.hash(user.password,10,(err,hash)=>{
-        user.password - hash
-        next()
-    })
-})
-
 const account = mongoose.model('account', userSchema)
 module.export = account

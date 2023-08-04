@@ -33,6 +33,15 @@ const newAccountSchema = new Schema({
         unique: true
     }
 
+});
+
+newAccountSchema.pre('save', function(next){
+    const user = this
+
+    bcrupt.hash(user.password,10,(err,hash)=>{
+        user.password = hash
+        next()
+    })
 })
 
 const registrations = mongoose.model('newaccount', newAccountSchema);
