@@ -7,6 +7,7 @@ import registrations from '/models/register'
 
 //define the express app
 const app = express();
+const port = 8000;
 
 //set up public routing
 app.use(express.static("public"));
@@ -60,9 +61,9 @@ app.route('/accounts')
     Password : req.body.Password,
     confirmPassword : req.body.confirmPassword
   })
-
+// inputs will be redirected to model imports
   newAccount.push(userAccounts, userProfiles, newAccnts),
-  res.render('/profile')
+  res.redirect('/profile')
   
 })
 
@@ -72,6 +73,6 @@ app.route('/accounts')
       Password: req.bosy.Password
   })
 })
-app.listen(3000, (req, res) => {
+app.listen(port, (req, res) => {
   console.log("app listeing on port 3000")
 });

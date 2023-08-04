@@ -1,10 +1,8 @@
 const mongoose = require('mongoose');
+const bcrupt = require('bcrypt')
+const Schema = mongoose.Schema
 
-module.export = registrations
-
-const newAccountSchema = mongoose.Schema
-
-const newAccount = new account({
+const newAccountSchema = new Schema({
     FirstName: {
         type: String,
         required: true,
@@ -38,3 +36,5 @@ const newAccount = new account({
 })
 
 const registrations = mongoose.model('newaccount', newAccountSchema);
+
+module.export = registrations
