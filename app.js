@@ -24,8 +24,19 @@ mongoose.connect("mongoDB:logalhost:27017/revantdb", { UseNewUrlParser: true });
 const userAccounts = users();
 const userProfiles = profiles();
 const newAccnts = registrations();
-
-
+//static pagees 
+app.get('/Home', (req, res)=>{
+  res.render('/home')
+});
+app.get('/About', (req,res)=>{
+  res.render('About')
+});
+app.get('/Fetures', (req, res)=>{
+  res.render('Feures')
+});
+app.get('/ContactUs', (req, res)=>{
+  res.render('ContactUs')
+});
 //build restful api structure
 app.route('/accounts')
 
